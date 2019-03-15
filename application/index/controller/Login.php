@@ -6,6 +6,11 @@ use app\index\model\User;
 use think\Request;
 
 class Login {
+
+    public function _empty() {
+        return return_json( '请求错误!' );
+    }
+
     /**
      * 登陆验证
      * @param Request $request

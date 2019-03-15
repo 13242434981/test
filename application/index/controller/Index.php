@@ -7,12 +7,13 @@ use app\index\model\PrjBase;
 use app\index\model\SystemCodes;
 use app\index\model\WatchWnrAttachments;
 use app\index\validate\GetAccessory;
-use think\db\exception\ModelNotFoundException;
-use think\Exception;
-use think\exception\DbException;
 use think\Request;
 
 class Index extends Common {
+
+    public function _empty() {
+        return return_json( '请求错误!' );
+    }
 
     /**
      * 首页返回项目列表数据及分类数据
@@ -60,12 +61,12 @@ class Index extends Common {
     public function upload( Request $request ) {
         $post = $request->post();
 
-        //$validate = new GetAccessory();
-//
-        //// 检测数据合法性
-        //if ( !$validate->check( $post ) ) {
-        //    return return_json( $validate->getError() );
-        //}
+        $validate = new GetAccessory();
+
+        // 检测数据合法性
+        if ( !$validate->check( $post ) ) {
+            return return_json( $validate->getError() );
+        }
 
         $path = 'test/';
 
@@ -107,12 +108,25 @@ class Index extends Common {
     /**
      * 删除附件
      */
-    public function del( ) {
+    public function del() {
         $post = $this->request->post();
+
+        $validate = new GetAccessory();
+
+        // 检测数据合法性
+        if ( !$validate->check( $post ) ) {
+            return return_json( $validate->getError() );
+        }
 
         $model = new WatchWnrAttachments();
 
-        $model->delAccessory( $post['id'] , session( config( 'config.session_name' ) ) );
+        $res = $model->delAccessory( $post['id'] , session( config( 'config.session_name' ) ) );
+
+        if ( $res ) {
+            return return_json( '删除成功' , 1 );
+        } else {
+            return return_json( $model->getError() );
+        }
     }
 
 
@@ -120,7 +134,23 @@ class Index extends Common {
      * 保存
      */
     public function edit() {
+        $post     = $this->request->post();
+        $validate = new GetAccessory();
 
+        // 检测数据合法性
+        if ( !$validate->check( $post ) ) {
+            return return_json( $validate->getError() );
+        }
+
+        $model = new WatchWnrAttachments();
+
+        $res = $model->saveAccessory( $post['id'] );
+
+        if ( $res ) {
+            return return_json( '删除成功' , 1 );
+        } else {
+            return return_json( $model->getError() );
+        }
     }
 
 

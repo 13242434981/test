@@ -67,8 +67,15 @@ class WatchWnrAttachments extends Model {
     }
 
 
-    public function saveAccessory() {
-
+    public function saveAccessory($id) {
+        try{
+            //$this->where('id',$id)->update([]);
+            return true;
+        }catch (Exception $exception){
+            trace( $exception->getMessage() );
+            $this->error = '系统异常，请稍后再试';
+            return false;
+        }
     }
 
 

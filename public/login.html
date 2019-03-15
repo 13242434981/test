@@ -7,6 +7,7 @@
 	    <link rel="stylesheet" type="text/css" href="./static/css/index-style/login.css">
 	    <link rel="stylesheet" type="text/css" href="./static/css/vendor/toastr.min.css" />
 	    <script type="text/javascript" src="./static/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="./static/js/common.js"></script>
 	</head>
 	<body>
 		<canvas></canvas>
@@ -38,7 +39,7 @@
 	                            </li>
 	                        </div>
 	                    </div>
-	                    <div class="cpr">Copyright © 2007-2018 技术支持：深圳皓峰通讯</div>
+	                    <div class="cpr">Copyright © 2007-2019 技术支持：深圳皓峰通讯</div>
 	                </div>
 	            </form>
 	        </div>
@@ -46,19 +47,7 @@
 	    <div class="mask-d">
 	        <div id="loading" class="loading">登录中...</div>
 	    </div>
-	    <script type="text/javascript">
-	    	$.ajax({
-	    		type:"post",
-	    		url:"/index.php/index/index/index",
-	    		async:true,
-	    		data:{"user":"admin","pass":"123"},
-	    		success: function(result){
-	    			console.log(result)
-	    		}
-	    	});
-	    </script>
-	    <script type="text/javascript" src="./static/js/index/login.js"></script>
+	    <script type="text/javascript" src="./static/js/login/login.js"></script>
 	    <script type="text/javascript" src="./static/js/vendor/toastr.min.js"></script>
-	    <script type="text/javascript" src="./static/js/scripts/form.js" charset="utf-8"></script>
 	</body>
 </html>
