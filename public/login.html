@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <title>用户登陆</title>
+	    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+	    <link rel="stylesheet" type="text/css" href="./static/css/general.css" />
+	    <link rel="stylesheet" type="text/css" href="./static/css/index-style/login.css">
+	    <link rel="stylesheet" type="text/css" href="./static/css/vendor/toastr.min.css" />
+	    <script type="text/javascript" src="./static/js/jquery.min.js"></script>
+	</head>
+	<body>
+		<canvas></canvas>
+
+	    <div id="login-bg">
+	
+	        <div id="login-container">
+	            <form id="form" name="FrmLogin">
+	                <div id="login-div">
+	                    <div id="" class="copy-logo"></div>
+	                    <div class="login-main" id="loginB">
+	                        <div class="login-head">
+	                            <h3>密码登录</h3>
+	                        </div>
+	                        <div class="login-form">
+	                            <li class="sp-li">
+	                                <input type="text" name="username" class="bg-input" id="username" placeholder="请输入用户名"
+	                                    value="">
+	                                <i class="input-icon user-icon"></i>
+	                            </li>
+	                            <li class="sp-li">
+	                                <input type="password" class="bg-input" id="password" name="password" placeholder="请输入密码"
+	                                    value="" autocomplete='off'>
+	                                <i class="input-icon psw-icon"></i>
+	                            </li>
+	                            <li class="login-btn-group">
+	                                <input type="button" class="login-btn button" value=" 登  陆 ">
+	                                <div id="pp"></div>
+	                            </li>
+	                        </div>
+	                    </div>
+	                    <div class="cpr">Copyright © 2007-2018 技术支持：深圳皓峰通讯</div>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	    <div class="mask-d">
+	        <div id="loading" class="loading">登录中...</div>
+	    </div>
+	    <script type="text/javascript">
+	    	$.ajax({
+	    		type:"post",
+	    		url:"/index.php/index/login/index",
+	    		async:true,
+	    		data:{"user":"admin","pass":"123"},
+	    		success: function(result){
+	    			console.log(result)
+	    		}
+	    	});
+	    </script>
+	    <script type="text/javascript" src="./static/js/index/login.js"></script>
+	    <script type="text/javascript" src="./static/js/vendor/toastr.min.js"></script>
+	    <script type="text/javascript" src="./static/js/scripts/form.js" charset="utf-8"></script>
+	</body>
+</html>
