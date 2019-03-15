@@ -2,6 +2,7 @@
 
 namespace app\index\model;
 
+use think\exception\DbException;
 use think\Model;
 
 /**
@@ -17,8 +18,15 @@ class PrjBase extends Model {
      * 获取项目列表信息
      */
     public function getProjectList() {
-        $prjBaseData = $this->field( [ 'prj_id'=>'id' , 'prj_name'=>'title' , ] )->where( [ 'status' => 100 , 'delstatus' => 0 ] )->select();
-
-        return $prjBaseData;
+        try {
+            $prjBaseData = $this->field( [ 'prj_id' => 'id' , 'prj_name' => 'title' , ] )->where( [
+                'status'    => 100 ,
+                'delstatus' => 0,
+            ] )->select();
+            return $prjBaseData;
+        } catch ( DbException $exception){
+            trace($exception->getMessage());
+            return [];
+        }
     }
 }

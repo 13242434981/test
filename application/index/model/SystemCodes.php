@@ -2,6 +2,7 @@
 
 namespace app\index\model;
 
+use think\exception\DbException;
 use think\Model;
 
 /**
@@ -14,7 +15,14 @@ class SystemCodes extends Model {
     protected $pk = 'code_id';
 
     public function getClassList() {
-        $data = $this->field('code_id,codes_name')->where( [ 'codes_no' => 'data_category' , 'delstatus' => 0 ] )->select();
-        return $data;
+        try {
+            $data = $this->field( 'code_id,codes_name' )
+                         ->where( [ 'codes_no' => 'data_category' , 'delstatus' => 0 ] )
+                         ->select();
+            return $data;
+        } catch ( DbException  $exception ) {
+            trace( $exception->getMessage() );
+            return [];
+        }
     }
 }

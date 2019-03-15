@@ -30,11 +30,6 @@ class Login {
             return return_json( $model->getError() );
         }
 
-        session([
-            'prefix'     => 'cdm',
-            'expire'       => '600',
-            'auto_start' => true,
-        ]);
 
         session( config( 'config.session_name' ) , $request->post( 'user' ) );
         session( 'nick' , $userInfo['nick'] );

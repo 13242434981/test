@@ -7,6 +7,9 @@ use app\index\model\PrjBase;
 use app\index\model\SystemCodes;
 use app\index\model\WatchWnrAttachments;
 use app\index\validate\GetAccessory;
+use think\db\exception\ModelNotFoundException;
+use think\Exception;
+use think\exception\DbException;
 use think\Request;
 
 class Index extends Common {
@@ -16,7 +19,6 @@ class Index extends Common {
      * @return \think\response\Json
      */
     public function index() {
-
         $prjBase     = new PrjBase();
         $systemCodes = new SystemCodes();
 
@@ -119,9 +121,9 @@ class Index extends Common {
     /**
      * 用户退出
      */
-    public function quit(){
-        session(null);
+    public function quit() {
+        session( null );
 
-        return return_json('退出成功!',1);
+        return return_json( '退出成功!' , 1 );
     }
 }
