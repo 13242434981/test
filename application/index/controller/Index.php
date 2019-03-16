@@ -35,11 +35,10 @@ class Index extends Common {
 
     /**
      * 获取附件数据
-     * @param Request $request
      * @return \think\response\Json
      */
-    public function getList( Request $request ) {
-        $post     = $request->post();
+    public function getList() {
+        $post     = $this->request->post();
         $validate = new GetAccessory();
 
         // 检测数据合法性
@@ -58,8 +57,8 @@ class Index extends Common {
     /**
      * 上传附件
      */
-    public function upload( Request $request ) {
-        $post = $request->post();
+    public function upload() {
+        $post = $this->request->post();
 
         $validate = new GetAccessory();
 
@@ -72,7 +71,7 @@ class Index extends Common {
 
         $data = [];
 
-        $files = $request->file();
+        $files = $this->request->file();
         foreach ( $files['img'] as $file ) {
             // 移动到框架应用根目录/uploads/ 目录下
             $info = $file->validate( [ 'size' => 156781111 , 'ext' => 'jpg,png,gif,txt,doc' ] )
@@ -111,6 +110,7 @@ class Index extends Common {
     public function del() {
         $post = $this->request->post();
 
+        //检测参数合法性
         $validate = new GetAccessory();
 
         // 检测数据合法性
